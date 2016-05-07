@@ -7,7 +7,6 @@ var path = require('path');
 var childProcess = require('child_process');
 var https = require('https');
 var fs = require('fs');
-var mkirp = require('mkdirp');
 
 var tempFile = path.join(process.cwd(), '.tmp.libwebrtc');
 
@@ -17,7 +16,7 @@ module.exports = function (context) {
     var Q = context.requireCordovaModule('q');
     var deferral = new Q.defer();
     
-    mkirp.sync(destFolder);
+    childProcess.spawn('mkdir', ['-p', destFolder]);
 
     console.log('Fetching WebRTC libraries, stand by...');
 
