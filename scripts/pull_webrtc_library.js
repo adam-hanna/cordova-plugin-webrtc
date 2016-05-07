@@ -7,6 +7,7 @@ var path = require('path');
 var childProcess = require('child_process');
 var https = require('https');
 var fs = require('fs');
+var mkirp = Meteor.require('mkdirp');
 
 var tempFile = path.join(process.cwd(), '.tmp.libwebrtc');
 
@@ -16,7 +17,7 @@ module.exports = function (context) {
     var Q = context.requireCordovaModule('q');
     var deferral = new Q.defer();
     
-    childProcess.spawnSync('mkdir', ['-p', destFolder]);
+    mkirp.sync(destFolder);
 
     console.log('Fetching WebRTC libraries, stand by...');
 
