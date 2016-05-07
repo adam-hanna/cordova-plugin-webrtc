@@ -11,6 +11,9 @@
       "ios"
     ]
   },
+  "dependencies": {
+    "mkdirp": "0.5.1"
+  },
   "devDependencies": {
     "bower": "^1.3.7",
     "gulp": "^3.8.8",
