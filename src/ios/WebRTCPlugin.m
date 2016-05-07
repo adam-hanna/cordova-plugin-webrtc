@@ -26,24 +26,19 @@
 
 @implementation WebRTCPlugin
 
--(CDVPlugin *)initWithWebView:(UIWebView *)theWebView
+- (void) pluginInitialize {
 {
+    [RTCPeerConnectionFactory initializeSSL];
+    [self initMaps];
+    _rtcPeerConnectionFactory = [[RTCPeerConnectionFactory alloc] init];
+    _latestMediaStreamId = 0;
+    _latestDataChannelId = 0;
+    _queue = dispatch_queue_create("com.remotium.cordova.webrtc",
+                                   DISPATCH_QUEUE_SERIAL);
 
-    self = [super initWithWebView:theWebView];
-    if (self) {
-        [RTCPeerConnectionFactory initializeSSL];
-        [self initMaps];
-        _rtcPeerConnectionFactory = [[RTCPeerConnectionFactory alloc] init];
-        _latestMediaStreamId = 0;
-        _latestDataChannelId = 0;
-        _queue = dispatch_queue_create("com.remotium.cordova.webrtc",
-                                       DISPATCH_QUEUE_SERIAL);
-
-        self.webView.opaque = NO;
-        self.webView.backgroundColor = [UIColor clearColor];
-        self.webView.superview.backgroundColor = [UIColor blackColor];
-    }
-    return self;
+    self.webView.opaque = NO;
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.superview.backgroundColor = [UIColor blackColor];
 }
 
 -(void)initMaps {
