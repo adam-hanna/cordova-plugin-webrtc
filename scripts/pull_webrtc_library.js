@@ -7,7 +7,7 @@ var path = require('path');
 var childProcess = require('child_process');
 var https = require('https');
 var fs = require('fs');
-var mkirp = Meteor.require('mkdirp');
+var mkirp = require('mkdirp');
 
 var tempFile = path.join(process.cwd(), '.tmp.libwebrtc');
 
