@@ -27,7 +27,6 @@
 @implementation WebRTCPlugin
 
 - (void) pluginInitialize {
-{
     [RTCPeerConnectionFactory initializeSSL];
     [self initMaps];
     _rtcPeerConnectionFactory = [[RTCPeerConnectionFactory alloc] init];
